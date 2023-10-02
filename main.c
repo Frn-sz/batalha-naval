@@ -1,6 +1,6 @@
 #define N_NAVIOS 5
-#include <functions/ask_pos.h>;
-#include <stdio.h>;
+#include "functions/ask_pos.h"
+#include <stdio.h>
 
 int main(int argc, char const *argv[])
 {
@@ -14,7 +14,7 @@ int main(int argc, char const *argv[])
         for (int i = N_NAVIOS; i > 2; i--)
         {
             printf("Digite as coordenadas que deseja colocar seu navio de tamanho = %d \n", i - 1);
-            ask_pos(&player, &board);
+            ask_pos(&player, board);
         }
     }
     return 0;
