@@ -8,6 +8,7 @@
 #include "functions/attack_enemy.h"
 #include "functions/verify_win.h"
 #include "functions/enemy_attack.h"
+
 #include <stdio.h>
 
 int main(int argc, char const *argv[])
@@ -18,6 +19,11 @@ int main(int argc, char const *argv[])
     init_board(playerBoard);
     init_board(enemyBoard);
 
+    printf("<------- Batalha Naval --------> \n\n");
+    printf("\t Tabuleiro inimigo \n\n");
+    visualize_enemy_board(enemyBoard);
+
+    printf("\t Seu Tabuleiro \n\n");
     print_board(playerBoard);
 
     int x, y, ship_size, giveFeedback = 0;
@@ -26,6 +32,7 @@ int main(int argc, char const *argv[])
 
     for (int i = N_NAVIOS; i > 1; i--)
     {
+
         ship_size = i;
         printf("Digite as coordenadas que deseja colocar seu navio de tamanho = %d \n", i);
 
@@ -38,8 +45,13 @@ int main(int argc, char const *argv[])
         if (verify_pos(playerBoard, x, y, dir, ship_size, giveFeedback) == 0)
         {
             printf("\ec\e[3J");
+            printf("<------- Batalha Naval --------> \n\n");
             place_ship(playerBoard, x, y, dir, ship_size);
-            printf("Seu Tabuleiro: \n");
+
+            printf("\t Tabuleiro inimigo \n\n");
+            visualize_enemy_board(enemyBoard);
+
+            printf("\t Seu Tabuleiro \n\n");
             print_board(playerBoard);
         }
         else
@@ -52,6 +64,7 @@ int main(int argc, char const *argv[])
 
     while (win == 0)
     {
+
         printf("Digite as coordenadas para atacar o inimigo: \n");
         scanf("%d %d", &x, &y);
 
@@ -71,16 +84,13 @@ int main(int argc, char const *argv[])
 
         verify_win(&win, playerBoard);
 
-        printf("Seu Tabuleiro: \n");
-        print_board(playerBoard);
-
         if (win == 1)
         {
             printf("Que pena, você perdeu :( \n");
             break;
         }
     }
-    print_board(enemyBoard);
-    printf("Obrigado por jogar! \n");
+
+    printf("\n\n Obrigado por jogar! \n\n");
     return 0;
 }

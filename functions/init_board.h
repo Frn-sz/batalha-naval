@@ -4,7 +4,7 @@ void init_board(char board[10][10])
     {
         for (int j = 0; j < 10; j++)
         {
-            board[i][j] = '#';
+            board[i][j] = '.';
         }
     }
 }
